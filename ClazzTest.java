@@ -1,6 +1,6 @@
-package ws.jvmgo
 
-public class ClassFileTest {
+
+public class ClazzTest {
     public static final boolean FLAG = true;
     public static final byte BYTE = 123;
     public static final char X = 'X';
@@ -11,6 +11,10 @@ public class ClassFileTest {
     public static final double E = 2.71828;
 
     public static void main(String[] args) throws RuntimeException {
-        System.out.println("Hello, World! ");
+        int sum = 0;
+        for (int i = 1; i <= 10; i++) {
+            sum += i;
+        }
+        System.out.println("Hello, sun: " + sum);
     }
 }
