@@ -27,6 +27,6 @@ func (self *ConstantMemberrefInfo) ClassName() string {
 	return self.cp.getUtf8(self.classIndex)
 }
 
-func (self *ConstantMemberrefInfo) NameAndDescriptor() string {
-	return self.cp.getUtf8(self.nameAndTypeIndex)
+func (self *ConstantMemberrefInfo) NameAndDescriptor() (string, string) {
+	return self.cp.getNameAndType(self.nameAndTypeIndex)
 }
