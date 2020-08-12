@@ -24,7 +24,7 @@ func (self *ConstantMemberrefInfo) readInfo(reader *ClassReader) {
 }
 
 func (self *ConstantMemberrefInfo) ClassName() string {
-	return self.cp.getUtf8(self.classIndex)
+	return self.cp.getClassName(self.classIndex)
 }
 
 func (self *ConstantMemberrefInfo) NameAndDescriptor() (string, string) {

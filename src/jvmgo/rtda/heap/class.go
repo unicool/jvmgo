@@ -1,4 +1,4 @@
-package head
+package heap
 
 import (
 	"jvmgo/classfile"
@@ -9,17 +9,17 @@ import (
 type Class struct {
 	accessFlags       uint16
 	name              string        // 完全限定名：java/lang/Object
-	superClassName    string        // 完全限定名：java/lang/Object
-	interfaceNames    []string      // 完全限定名：java/lang/Object
+	superClassName    string        // 完全限定名：
+	interfaceNames    []string      // 完全限定名：
 	constantPool      *ConstantPool // 运行时常量池指针
 	fields            []*Field
 	methods           []*Method
 	loader            *ClassLoader
 	superClass        *Class
 	interfaces        []*Class
-	instanceSlotCount uint   // 类变量空间大小
-	staticSlotCount   uint   // 静态变量空间大小
-	staticVars        *Slots // 静态变量
+	instanceSlotCount uint  // 类变量空间大小
+	staticSlotCount   uint  // 静态变量空间大小
+	staticVars        Slots // 静态变量
 }
 
 func newClass(cf *classfile.ClassFile) *Class {

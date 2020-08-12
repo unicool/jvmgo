@@ -1,4 +1,4 @@
-package head
+package heap
 
 const (
 	ACC_PUBLIC       = 0x0001 // class field method

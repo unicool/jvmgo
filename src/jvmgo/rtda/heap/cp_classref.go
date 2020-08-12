@@ -1,4 +1,4 @@
-package head
+package heap
 
 import "jvmgo/classfile"
 

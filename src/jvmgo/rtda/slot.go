@@ -1,8 +1,8 @@
 package rtda
 
-import "jvmgo/rtda/head"
+import "jvmgo/rtda/heap"
 
 type Slot struct {
 	num int32
-	ref *head.Object
+	ref *heap.Object
 }

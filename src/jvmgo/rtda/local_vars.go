@@ -1,7 +1,7 @@
 package rtda
 
 import (
-	"jvmgo/rtda/head"
+	"jvmgo/rtda/heap"
 	"math"
 )
 
@@ -53,10 +53,10 @@ func (self LocalVars) GetDouble(index uint) float64 {
 	return math.Float64frombits(bits)
 }
 
-func (self LocalVars) SetRef(index uint, ref *head.Object) {
+func (self LocalVars) SetRef(index uint, ref *heap.Object) {
 	self[index].ref = ref
 }
 
-func (self LocalVars) GetRef(index uint) *head.Object {
+func (self LocalVars) GetRef(index uint) *heap.Object {
 	return self[index].ref
 }

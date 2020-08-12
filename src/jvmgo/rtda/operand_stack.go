@@ -1,7 +1,7 @@
 package rtda
 
 import (
-	"jvmgo/rtda/head"
+	"jvmgo/rtda/heap"
 	"math"
 )
 
@@ -64,12 +64,12 @@ func (self *OperandStack) PopDouble() float64 {
 	return math.Float64frombits(bits)
 }
 
-func (self *OperandStack) PushRef(ref *head.Object) {
+func (self *OperandStack) PushRef(ref *heap.Object) {
 	self.slots[self.size].ref = ref
 	self.size++
 }
 
-func (self *OperandStack) PopRef() *head.Object {
+func (self *OperandStack) PopRef() *heap.Object {
 	self.size--
 	ref := self.slots[self.size].ref
 	self.slots[self.size].ref = nil
