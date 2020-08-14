@@ -20,7 +20,7 @@ type Class struct {
 	instanceSlotCount uint  // 类变量空间大小
 	staticSlotCount   uint  // 静态变量空间大小
 	staticVars        Slots // 静态变量
-	initStarted       bool
+	initStarted       bool  // 类初始化标识
 }
 
 func newClass(cf *classfile.ClassFile) *Class {

@@ -12,7 +12,6 @@ type INVOKE_VIRTUAL struct {
 	base.Index16Instruction
 }
 
-// hack!
 func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame) {
 	currentClass := frame.Method().Class()
 	cp := currentClass.ConstantPool()
