@@ -31,21 +31,21 @@ func _lload(frame *rtda.Frame, index uint) {
 }
 
 func (self *LLOAD) Execute(frame *rtda.Frame) {
-	_aload(frame, uint(self.Index))
+	_lload(frame, self.Index)
 }
 
 func (self *LLOAD_0) Execute(frame *rtda.Frame) {
-	_aload(frame, uint(0))
+	_lload(frame, uint(0))
 }
 
 func (self *LLOAD_1) Execute(frame *rtda.Frame) {
-	_aload(frame, uint(1))
+	_lload(frame, uint(1))
 }
 
 func (self *LLOAD_2) Execute(frame *rtda.Frame) {
-	_aload(frame, uint(2))
+	_lload(frame, uint(2))
 }
 
 func (self *LLOAD_3) Execute(frame *rtda.Frame) {
-	_aload(frame, uint(3))
+	_lload(frame, uint(3))
 }
