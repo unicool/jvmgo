@@ -182,12 +182,12 @@ const (
 > `<clinit>`: 类的初始化方法
 
 #### array & string
-> 数组类由JVM在运行时生成
-		superClass: "java/lang/Object",
-		interfaces: {
-			"java/lang/Cloneable",
-			"java/io/Serializable",
-		},
+- 数组类由JVM在运行时生成
+    > superClass: "java/lang/Object",
+    > interfaces: {
+    > 	"java/lang/Cloneable",
+    > 	"java/io/Serializable",
+    > },
 - 指令
     - newarray：操作数1-指令码后面的atype(8bits)；操作数2-操作数栈的count
     - anewarray：创建引用类型数组
@@ -195,6 +195,9 @@ const (
     - arraylength：弹出引用
     - <t>aload：按索引取数组元素值
     - <t>astore：按索引給数组赋值
+    
+- 在`class`中`string`是以`MUTF8`格式保存的，而在JVM运行时又是以`UTF16`格式保存的
+> 
 
 
 
