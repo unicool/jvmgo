@@ -181,4 +181,23 @@ const (
 ##### 类初始化
 > `<clinit>`: 类的初始化方法
 
+#### array & string
+> 数组类由JVM在运行时生成
+		superClass: "java/lang/Object",
+		interfaces: {
+			"java/lang/Cloneable",
+			"java/io/Serializable",
+		},
+- 指令
+    - newarray：操作数1-指令码后面的atype(8bits)；操作数2-操作数栈的count
+    - anewarray：创建引用类型数组
+    - multianewarray：创建多维数组
+    - arraylength：弹出引用
+    - <t>aload：按索引取数组元素值
+    - <t>astore：按索引給数组赋值
+
+
+
+
+
 

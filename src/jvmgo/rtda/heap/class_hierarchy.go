@@ -4,13 +4,47 @@ package heap
 // jvms8 6.5.checkcast
 func (self *Class) isAssignableFrom(other *Class) bool {
 	s, t := other, self
+
 	if s == t {
 		return true
 	}
-	if !t.IsInterface() {
-		return s.IsSubClassOf(t)
+
+	if !s.IsArray() {
+		if !s.IsInterface() {
+			// s is class
+			if !t.IsInterface() {
+				// t is not interface
+				return s.IsSubClassOf(t)
+			} else {
+				// t is interface
+				return s.IsImplements(t)
+			}
+		} else {
+			// s is interface
+			if !t.IsInterface() {
+				// t is not interface
+				return t.isJlObject()
+			} else {
+				// t is interface
+				return t.isSuperInterfaceOf(s)
+			}
+		}
 	} else {
-		return s.IsImplements(t)
+		// s is array
+		if !t.IsArray() {
+			if !t.IsInterface() {
+				// t is class
+				return t.isJlObject()
+			} else {
+				// t is interface
+				return t.isJlCloneable() || t.isJioSerializable()
+			}
+		} else {
+			// t is array
+			sc := s.ComponentClass()
+			tc := t.ComponentClass()
+			return sc == tc || tc.isAssignableFrom(sc)
+		}
 	}
 }
 
@@ -33,6 +67,11 @@ func (self *Class) isSubInterfaceOf(iface *Class) bool {
 		}
 	}
 	return false
+}
+
+// iface extends self
+func (self *Class) isSuperInterfaceOf(iface *Class) bool {
+	return iface.isSubInterfaceOf(self)
 }
 
 // self extends c

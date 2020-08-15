@@ -6,7 +6,14 @@ import (
 	"jvmgo/classpath"
 )
 
+/*
 // method area
+class names:
+    - primitive types: boolean, byte, int ...
+    - primitive arrays: [Z, [B, [I ...
+    - non-array classes: java/lang/Object ...
+    - array classes: [Ljava/lang/Object; ...
+*/
 type ClassLoader struct {
 	cp          *classpath.Classpath
 	classMap    map[string]*Class // loaded classes
@@ -24,6 +31,9 @@ func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader {
 func (self *ClassLoader) LoadClass(name string) *Class {
 	if class, ok := self.classMap[name]; ok {
 		return class // have loaded
+	}
+	if name[0] == '[' {
+		return self.loadArrayClass(name)
 	}
 	return self.loadNonArrayClass(name)
 }
@@ -132,6 +142,22 @@ func (self *ClassLoader) defineClass(data []byte) *Class {
 	resolveSuperClass(class)
 	resolveInterfaces(class)
 	self.classMap[class.name] = class
+	return class
+}
+
+func (self *ClassLoader) loadArrayClass(name string) *Class {
+	class := &Class{
+		accessFlags: ACC_PUBLIC, // todo
+		name:        name,
+		loader:      self,
+		initStarted: true, // needn't
+		superClass:  self.LoadClass("java/lang/Object"),
+		interfaces: []*Class{
+			self.LoadClass("java/lang/Cloneable"),
+			self.LoadClass("java/io/Serializable"),
+		},
+	}
+	self.classMap[name] = class
 	return class
 }
 
